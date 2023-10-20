@@ -1,17 +1,22 @@
 import db, { genId } from '../../src/modules/db';
 const run = async () => {
-  await db.post.createMany({
+  await db.submission.createMany({
     data: [
       {
         id: genId(),
-        slug: 'ultimate-node-stack',
-        title: 'Ultimate Node Stack 2023',
-        publishedAt: new Date(),
+        submittedAt: new Date(),
+        data: {
+          name: 'Muyiwa Dosunmu',
+          twitter: '@muyiwadosunmu',
+        },
       },
       {
         id: genId(),
-        slug: 'draft-post',
-        title: 'Draft Post',
+        submittedAt: new Date(),
+        data: {
+          name: 'Joshua Dada',
+          twitter: 'Josh Dad',
+        },
       },
     ],
   });

@@ -10,15 +10,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
+model Submission {
   id          String    @id
-  slug        String    @unique
-  title       String
-  content     String?
+  submittedAt DateTime
+  data        Json
   publishedAt DateTime?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
-  @@index([publishedAt])
-  @@map("posts")
+  @@index([id])
+  @@map("submissions")
 }

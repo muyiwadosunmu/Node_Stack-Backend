@@ -7,6 +7,7 @@
     "build": "rimraf dist && swc ./src -d dist",
     "db:console": "sudo docker compose run postgres psql -h postgres -U postgres -d webapp_dev",
     "db:migrate": "knex migrate:latest",
+    "build:prisma":"prisma generate && pnpm rebuild:be",
     "docker:db:migrate": "sudo docker compose run backend pnpm db:migrate",
     "docker:db:migrate:undo": "sudo docker compose run backend pnpx knex migrate:down",
     "docker:seed:dev": "sudo docker compose run backend pnpm ts-node scripts/seed/dev.ts",
