@@ -5,6 +5,13 @@
   "main": "index.js",
   "scripts": {
     "build": "rimraf dist && swc ./src -d dist",
+    "db:console": "sudo docker compose run postgres psql -h postgres -U postgres -d webapp_dev",
+    "db:migrate": "knex migrate:latest",
+    "docker:db:migrate": "sudo docker compose run backend pnpm db:migrate",
+    "docker:db:migrate:undo": "sudo docker compose run backend pnpx knex migrate:down",
+    "docker:seed:dev": "sudo docker compose run backend pnpm ts-node scripts/seed/dev.ts",
+    "rebuild:be": "sudo docker compose build backend && sudo docker compose rm --force --stop backend && sudo docker compose up -d backend",
+    "seed:dev": "sudo docker compose run backend pnpm ts-node scripts/seed/dev.ts",
     "start": "node dist/index.js",
     "start:docker": "pnpm build && node --inspect=0.0.0.0 dist/index.js",
     "watch": "watchy --no-init-spawn --debounce 1 -w src -- sudo docker compose restart backend"
@@ -16,8 +23,12 @@
     "node": "18.18.2"
   },
   "dependencies": {
+    "@prisma/client": "^5.4.2",
     "express": "^4.18.2",
+    "knex": "^3.0.1",
     "morgan": "^1.10.0",
+    "nanoid": "3.3.5",
+    "pg": "^8.11.3",
     "typescript": "^5.2.2"
   },
   "devDependencies": {
@@ -30,6 +41,10 @@
     "@typescript-eslint/eslint-plugin": "^6.8.0",
     "@typescript-eslint/parser": "^6.8.0",
     "eslint": "^8.51.0",
-    "rimraf": "^5.0.5"
+    "prisma": "^5.4.2",
+    "rimraf": "^5.0.5",
+    "sequelize": "^6.33.0",
+    "sequelize-cli": "^6.6.1",
+    "ts-node": "^10.9.1"
   }
 }
