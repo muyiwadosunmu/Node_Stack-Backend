@@ -7,5 +7,5 @@
     "**/.git/subtree-cache/**": true
   },
   "typescript.tsdk": "node_modules/typescript/lib",
-  "cSpell.words": ["Muyiwa", "watchy"]
+  "cSpell.words": ["Muyiwa", "QLJSON", "watchy"]
 }
